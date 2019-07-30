@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mTrueButton;
     private  Button mFalseButton;
     private Button mNextButton;
+    private Button mPrevButton;
     private TextView mQuestionTextView;
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_oceans, true),
@@ -57,10 +58,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mNextButton=(Button)findViewById(R.id.next_button);
+        mPrevButton=(Button) findViewById(R.id.prev_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mCurrentIndex=(mCurrentIndex+1)% mQuestionBank.length;
+                updateQuestion();
+            }
+        });
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCurrentIndex=(mCurrentIndex-1)% mQuestionBank.length;
                 updateQuestion();
             }
         });
