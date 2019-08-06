@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG="QuizActivity";
+    private static final String KEY_INDEX="index";
     private Button mTrueButton;
     private  Button mFalseButton;
     private Button mNextButton;
@@ -82,7 +83,16 @@ public class MainActivity extends AppCompatActivity {
                 mCurrentIndex=(mCurrentIndex+1)% mQuestionBank.length;
             }
         });
+        if (savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
         updateQuestion();
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
     }
     @Override
     public void onStart() {
