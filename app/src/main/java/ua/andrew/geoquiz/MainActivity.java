@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
+
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,5 +157,11 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.d(TAG, "onDestroy() called");
     }
-
+//****************************WARNING************************************
+    public void onClick(View view) {
+        mCurrentIndex=(mCurrentIndex+1)% mQuestionBank.length;
+        mIsCheater=false;
+        updateQuestion();
+    }
+    //*******************************************************************
 }
